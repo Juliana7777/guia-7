@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller 7- Juliana Lugo Marín </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script defer src="script.js"></script>
+</head>
+
+<body class="bg-primary-subtle">
+
+    <!--  aquí se muestra la fecha y hora actual al cargar la página -->
+    <p id="fechaHora" class="text-center fw-bold mt-3 mb-0"></p>
+
+    <div class="container mt-5"> <!-- Agrega un margen superior para separar el contenido del borde superior de la página -->
+        <div class="row justify-content-center"> <!-- Centra el contenido horizontalmente -->
+            <div class="col-md-6"> 
+                <div class="card shadow"><!-- Le agrega un sombradp a la caja del formulario -->
+                    <div class="card-body"> <!-- El espacio interno de la cajita, donde va el formulario -->
+
+                        <h2 class="text-center mb-4">Registro de Datos de Usuario </h2>
+
+                        <!--  se agregó novalidate -->
+                        <form id="formulario" novalidate>
+                            <div class="row">
+                                <div class="col">
+                                    <label for="nombre" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id ="nombre">
+                                    <!--  aquí sale "Escribiendo: ..." -->
+                                    <div id="mensajeNombre" class="form-text"></div>
+                                </div>
+
+                                <div class="col">
+                                    <label for="apellido" class="form-label">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido">
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <label for="programa" class="form-label">Programa Académico</label>
+                                <input type="text" class="form-control" id="programa">
+                            </div>
+
+                            <div class="col">
+                                <label for="edad" class="form-label">Edad</label>
+                                <input type="number" class="form-control" id="edad" >
+                                <!--  aquí sale "Menor de edad" o "Mayor de edad" -->
+                                <div id="mensajeEdad" class="form-text fw-bold"></div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email">
+                                <!--Aquí sale el mensaje en rojo si no se detecta el @ -->
+                                <div id="mensajeEmail" class="form-text text-danger"></div>
+                            </div>
+
+                            <!--los botones ahora están dentro del form y Guardar -->
+                            <button type="submit" class="btn btn-info" id="btnGuardar">Guardar</button>
+                            <button type="button" class="btn btn-danger" id="btnLimpiar" title="Haz doble clic para limpiar"> Limpiar</button>
+
+                            <!--  texto de ayuda visible para Limpiar -->
+                            <div class="form-text mt-2">Para limpiar el formulario, haz doble clic en Limpiar.</div>
+                        </form>
+    
+                    </div>
+                </div>
+
+                <!-- tarjeta de resultado -->
+                <div class="card shadow mt-4 d-none" id="tarjetaResultado">
+                    <div class="card-header bg-success text-white fw-bold">Datos guardados</div>
+                    <div class="card-body">
+                        <p class="mb-1"><strong>Nombre:</strong> <span id="datoNombre"></span></p>
+                        <p class="mb-1"><strong>Apellido:</strong> <span id="datoApellido"></span></p>
+                        <p class="mb-1"><strong>Edad:</strong> <span id="datoEdad"></span></p>
+                        <p class="mb-1"><strong>Correo:</strong> <span id="datoEmail"></span></p>
+                        <p class="mb-0"><strong>Programa:</strong> <span id="datoPrograma"></span></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!--alerta de bienvenida al cargar la página -->
+    <template id="alerta-bienvenida">
+        <swal-title>¡Bienvenido(a)!</swal-title>
+        <swal-icon type="info"></swal-icon>
+        <swal-html>Completa el formulario para continuar.</swal-html>
+        <swal-button type="confirm">Comenzar</swal-button>
+    </template>
+
+    <!-- alertas -->
+    <template id="alerta-vacio">
+        <swal-title>Faltan datos</swal-title>
+        <swal-icon type="warning"></swal-icon>
+        <swal-html>Por favor completa todos los campos antes de guardar.</swal-html>
+        <swal-button type="confirm">Entendido</swal-button>
+    </template>
+
+    <!-- Alerta de formulario limpio -->
+    <template id="alerta-limpiado">
+        <swal-title>Formulario limpio</swal-title>
+        <swal-icon type="info"></swal-icon>
+        <swal-html>Se borraron los datos del formulario y de la tarjeta.</swal-html>
+        <swal-button type="confirm">Entendido</swal-button>
+    </template>
+
+    <!-- Alerta de éxito al guardar -->
+    <template id="alerta-exito">
+        <swal-title>¡Datos guardados!</swal-title>
+        <swal-icon type="success"></swal-icon>
+        <swal-html>Información guardada correctamente.</swal-html>
+        <swal-button type="confirm">Aceptar</swal-button>
+    </template>
+
+</body>
+
+</html>
